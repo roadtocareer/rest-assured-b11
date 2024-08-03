@@ -20,12 +20,13 @@ dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.2'
-
-
-
+    // https://mvnrepository.com/artifact/com.github.javafaker/javafaker
+    implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG(){
+        suites "./src/test/resources/suite.xml"
+    }
 }

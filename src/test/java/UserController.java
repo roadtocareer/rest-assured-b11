@@ -34,21 +34,16 @@ public class UserController extends Setup {
                 .when().get("/user/search/id/"+userId);
         return res.jsonPath();
     }
-    public void createUser(UserModel model) throws ConfigurationException {
+    public JsonPath createUser(UserModel model) throws ConfigurationException {
         RestAssured.baseURI= prop.getProperty("baseUrl");
-//        model.setName(model.getName());
-//        model.setEmail(model.getEmail());
-//        model.setPassword(model.getPassword());
-//        model.setPhone_number(model.getPhone_number());
-//        model.setNid(model.getNid());
-//        model.setRole(model.getRole());
-
         Response res=given().contentType("application/json")
                 .header("Authorization",prop.getProperty("token"))
                 .header("X-AUTH-SECRET-KEY",prop.getProperty("partnerKey"))
                 .body(model)
                 .when().post("/user/create");
         System.out.println(res.asString());
+        return res.jsonPath();
+
 
     }
 
